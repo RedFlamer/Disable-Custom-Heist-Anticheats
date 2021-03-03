@@ -18,10 +18,10 @@ elseif level == 'Gambling_room' then
 	function MissionManager:_add_script(data)
 		for _, element in pairs(data.elements) do
 			if element.id == 102191 and element.editor_name == 'alarm_guy_counter' 
-			or element.values.on_executed[1].id = 102190 and element.values.on_executed[2].id = 102192 and element.values.on_executed[3].id = 101993
-			or element.class == 'ElementCounter' and element.values.counter_target > 4 and element.id == 102191
-			or element.class == 'ElementCounter' and element.values.position = Vector3(4127.89, -476.612, 4125.92) and element.values.counter_target > 4
-			or element.class == 'ElementCounter' and element.values.on_executed[1].delay = 0.10000000149012 and element.values.on_executed[1].id = 102190 and element.values.counter_target > 4
+			or element.values.on_executed[1] and element.values.on_executed[1].id and element.values.on_executed[1].id == 102190 and element.values.on_executed[2] and element.values.on_executed[2].id and element.values.on_executed[2].id == 102192 and element.values.on_executed[3] and element.values.on_executed[3].id and element.values.on_executed[3].id == 101993
+			or element.class == 'ElementCounter' and element.values.counter_target >= 5 and element.id == 102191
+			or element.class == 'ElementCounter' and element.values.position == Vector3(4127.89, -476.612, 4125.92) and element.values.counter_target >= 5
+			or element.class == 'ElementCounter' and element.values.on_executed[1] and element.values.on_executed[1].id and element.values.on_executed[1].delay and element.values.on_executed[1].delay == 0.10000000149012 and element.values.on_executed[1].id == 102190 and element.values.counter_target >= 5
 			then -- if you want to be a petty asshole Croqui, have fun explaining why you changed all these things at once to break this mod
 				element.values.enabled = false -- at least you boldly give "SILENT ASSASSIN DETECTED" as the alarm reason, still triggers on legitimate users though so fuck off
 			end
