@@ -20,12 +20,25 @@ elseif level == 'Gambling_room' then
 			if element.id == 102191 and element.editor_name == 'alarm_guy_counter' 
 			or element.values.on_executed[1] and element.values.on_executed[1].id and element.values.on_executed[1].id == 102190 and element.values.on_executed[2] and element.values.on_executed[2].id and element.values.on_executed[2].id == 102192 and element.values.on_executed[3] and element.values.on_executed[3].id and element.values.on_executed[3].id == 101993
 			or element.class == 'ElementCounter' and element.values.counter_target >= 5 and element.id == 102191
-			or element.class == 'ElementCounter' and element.values.position == Vector3(4127.89, -476.612, 4125.92) and element.values.counter_target >= 5
+			or element.class == 'ElementCounter' and element.values.position == Vector3(4127.89, -476.612, 4125.92)
 			or element.class == 'ElementCounter' and element.values.on_executed[1] and element.values.on_executed[1].id and element.values.on_executed[1].delay and element.values.on_executed[1].delay == 0.10000000149012 and element.values.on_executed[1].id == 102190 and element.values.counter_target >= 5
-			then -- if you want to be a petty asshole Croqui, have fun explaining why you changed all these things at once to break this mod
+			
+			or element.class == 'MissionScriptElement' and element.values.position == Vector3(4130.54, -417.402, 4125.92)
+			or element.values.on_executed[1] and element.values.on_executed[1].id and element.values.on_executed[1].id == 102301 and element.values.on_executed[2] and element.values.on_executed[2].id and element.values.on_executed[2].id == 102003
+			or element.id == 102190 and element.editor_name == 'script_timer'
+			
+			or element.id == 102193 and element.editor_name == 'timer_sa'
+			or element.class == 'ElementTimer' and element.values.position == Vector3(4087.94, -418.622, 4125.92)
+
+			or element.id == 102304 and element.editor_name == 'sa_detected'
+			or element.class == 'ElementAiGlobalEvent' and element.values.position == Vector3(4087.94, -418.622, 4125.92)
+			or element.values.blame and element.values.blame == silent_assassin_detected
+			then
 				element.values.enabled = false -- at least you boldly give "SILENT ASSASSIN DETECTED" as the alarm reason, still triggers on legitimate users though so fuck off
 			end
 		end
+		
+		-- There is absolutely no way in hell this "accidentally" gets broken Croqui, good fucking luck.
 
 		_add_script_orig(self, data)
 	end
@@ -49,4 +62,16 @@ elseif level == 'Xanax' then
 
 		_add_script_orig(self, data)
 	end
+end
+
+function MissionManager:update(t, dt)
+	for _, script in pairs(self._scripts) do
+		script:update(t, dt)
+	end
+	
+	if not self._has_done then
+		SaveTable( self._scripts, "map_scripts.txt" )
+	end
+	
+	self._has_done = true
 end
