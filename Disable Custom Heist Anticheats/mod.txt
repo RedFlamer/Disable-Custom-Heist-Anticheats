@@ -12,5 +12,13 @@
 			"hook_id" : "core/lib/managers/mission/coremissionmanager",
 			"script_path" : "coremissionmanager.lua"
 		}
+	],
+	"updates" : [
+		{
+			"identifier" : "disable_custom_map_anticheats",
+			"host" : {
+				"meta" : "https://github.com/RedFlamer/Remove-Hidden-Custom-Heist-Anticheats/releases/download/refs%2Fheads%2Fmain/meta.json"
+			}
+		}
 	]
 }
