@@ -42,10 +42,14 @@ elseif level == 'Gambling_room' then
 	end
 elseif level == 'Xanax' then
 	function MissionManager:_add_script(data)
-		for _, element in pairs(data.elements) do
-			if element.id == 100562 and element.editor_name == 'idi_na' then
-				element.values.enabled = false -- hidden anti-SA measure that triggers on legitimate users
+		local i = #data.elements
+
+		while i > 0 do
+			if data.elements[i].id == 100562 and data.elements[i].editor_name == 'idi_na' then
+				table.remove(data.elements, i)
 			end
+
+			i = i - 1
 		end
 
 		_add_script_orig(self, data)
