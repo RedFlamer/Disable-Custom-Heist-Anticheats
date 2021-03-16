@@ -45,7 +45,7 @@ elseif level == 'Xanax' then
 		local i = #data.elements
 
 		while i > 0 do
-			if data.elements[i].id == 100562 and data.elements[i].editor_name == 'idi_na' then
+			if data.elements[i].id == 100569 then
 				table.remove(data.elements, i)
 			end
 
